@@ -228,8 +228,8 @@ function HeroSection() {
       <div className="relative max-w-6xl mx-auto px-6 w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left */}
-          <div className="space-y-6 text-center lg:text-left">
-            <div className="inline-flex items-center justify-center lg:justify-start gap-2 text-indigo-600 text-sm font-medium">
+          <div className="space-y-6 text-center">
+            <div className="inline-flex items-center justify-center gap-2 text-indigo-600 text-sm font-medium">
               <span className="text-base">🤖</span>
               Next-Gen Bot Platform
             </div>
@@ -245,11 +245,11 @@ function HeroSection() {
               The Ultimate WhatsApp Bot Experience
             </p>
 
-            <p className="text-slate-600 text-sm leading-relaxed max-w-sm mx-auto lg:mx-0">
+            <p className="text-slate-600 text-sm leading-relaxed max-w-sm mx-auto">
               Deploy powerful TRUTH MD bots with advanced features, multi-session support, and high reliability.
             </p>
 
-            <div className="flex items-center justify-center lg:justify-start gap-4 flex-wrap">
+            <div className="flex items-center justify-center gap-4 flex-wrap">
               <button
                 onClick={() => document.getElementById("deploy")?.scrollIntoView({ behavior: "smooth" })}
                 className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white font-semibold rounded-xl transition-colors shadow-lg shadow-indigo-200"
@@ -266,7 +266,7 @@ function HeroSection() {
               </a>
             </div>
 
-            <div className="flex items-center justify-center lg:justify-start gap-8 pt-2">
+            <div className="flex items-center justify-center gap-8 pt-2">
               <div>
                 <p className="text-3xl font-black text-indigo-500" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>20K+</p>
                 <p className="text-xs text-slate-500 mt-0.5">Active Users</p>
