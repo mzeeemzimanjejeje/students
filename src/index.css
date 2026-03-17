@@ -107,6 +107,86 @@
   }
 }
 
+/* ── Animated background blobs ── */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  opacity: 0.55;
+  will-change: transform;
+}
+
+.blob-1 {
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle at 40% 40%, #c4b5fd, #a5b4fc);
+  top: -120px;
+  left: -120px;
+  animation: blobFloat1 20s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle at 60% 40%, #93c5fd, #c4b5fd);
+  top: 15%;
+  right: -80px;
+  animation: blobFloat2 25s ease-in-out infinite;
+  animation-delay: -7s;
+}
+
+.blob-3 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle at 50% 60%, #ddd6fe, #e0e7ff);
+  bottom: 5%;
+  left: -60px;
+  animation: blobFloat3 22s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+.blob-4 {
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle at 40% 50%, #a5b4fc, #818cf8);
+  bottom: 25%;
+  right: -40px;
+  animation: blobFloat1 18s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.blob-5 {
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle at 50% 50%, #f0abfc, #c4b5fd);
+  top: 45%;
+  left: 35%;
+  animation: blobFloat2 28s ease-in-out infinite;
+  animation-delay: -15s;
+}
+
+@keyframes blobFloat1 {
+  0%,  100% { transform: translate(0px,   0px)  scale(1);    }
+  20%        { transform: translate(40px, -50px) scale(1.06); }
+  40%        { transform: translate(-30px, 30px) scale(0.94); }
+  60%        { transform: translate(50px,  40px) scale(1.08); }
+  80%        { transform: translate(-20px,-30px) scale(0.97); }
+}
+
+@keyframes blobFloat2 {
+  0%,  100% { transform: translate(0px,   0px)  scale(1);    }
+  25%        { transform: translate(-45px, 35px) scale(1.05); }
+  50%        { transform: translate(30px, -45px) scale(0.93); }
+  75%        { transform: translate(-35px, 20px) scale(1.07); }
+}
+
+@keyframes blobFloat3 {
+  0%,  100% { transform: translate(0px,  0px)  scale(1);    }
+  30%        { transform: translate(35px, 50px) scale(1.04); }
+  60%        { transform: translate(-40px,-35px)scale(0.96); }
+  80%        { transform: translate(20px, -20px)scale(1.06); }
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;
