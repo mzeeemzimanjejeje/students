@@ -6,17 +6,6 @@ const queryClient = new QueryClient();
 
 const GITHUB_REPO = "Courtney250/TRUTH-MD";
 
-function AnimatedBackground() {
-  return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-      <div className="blob blob-1" />
-      <div className="blob blob-2" />
-      <div className="blob blob-3" />
-      <div className="blob blob-4" />
-      <div className="blob blob-5" />
-    </div>
-  );
-}
 
 function useGitHubStats() {
   const [stats, setStats] = useState<{ stars: number | null; forks: number | null }>({ stars: null, forks: null });
@@ -756,7 +745,6 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-        <AnimatedBackground />
         <BottomNav />
         <Switch>
           <Route path="/deploy" component={DeployPage} />
