@@ -82,18 +82,27 @@
 @layer base {
   * {
     @apply border-border;
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    overflow-x: hidden;
   }
   html {
     background: linear-gradient(160deg, #ece9f8 0%, #e0dff5 40%, #dde4f8 100%);
-    min-height: 100%;
+    background-attachment: fixed;
   }
   body {
     @apply font-sans antialiased text-foreground;
     background: transparent;
     min-height: 100vh;
+    min-height: 100dvh;
   }
   #root {
     min-height: 100vh;
+    min-height: 100dvh;
     background: transparent;
   }
 }
