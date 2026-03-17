@@ -111,80 +111,80 @@
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(72px);
-  opacity: 0.55;
+  filter: blur(45px);
+  opacity: 0.82;
   will-change: transform;
 }
 
 .blob-1 {
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle at 40% 40%, #c4b5fd, #a5b4fc);
-  top: -120px;
-  left: -120px;
-  animation: blobFloat1 20s ease-in-out infinite;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle at 40% 40%, #9333ea, #7c3aed);
+  top: -140px;
+  left: -100px;
+  animation: blobFloat1 18s ease-in-out infinite;
 }
 
 .blob-2 {
-  width: 360px;
-  height: 360px;
-  background: radial-gradient(circle at 60% 40%, #93c5fd, #c4b5fd);
-  top: 15%;
-  right: -80px;
-  animation: blobFloat2 25s ease-in-out infinite;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle at 60% 40%, #60a5fa, #818cf8);
+  top: 10%;
+  right: -100px;
+  animation: blobFloat2 23s ease-in-out infinite;
   animation-delay: -7s;
 }
 
 .blob-3 {
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle at 50% 60%, #ddd6fe, #e0e7ff);
-  bottom: 5%;
-  left: -60px;
-  animation: blobFloat3 22s ease-in-out infinite;
-  animation-delay: -12s;
+  width: 460px;
+  height: 460px;
+  background: radial-gradient(circle at 50% 60%, #a855f7, #8b5cf6);
+  bottom: 0%;
+  left: -80px;
+  animation: blobFloat3 20s ease-in-out infinite;
+  animation-delay: -11s;
 }
 
 .blob-4 {
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle at 40% 50%, #a5b4fc, #818cf8);
-  bottom: 25%;
-  right: -40px;
-  animation: blobFloat1 18s ease-in-out infinite;
-  animation-delay: -4s;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle at 40% 50%, #6366f1, #4f46e5);
+  bottom: 20%;
+  right: -60px;
+  animation: blobFloat1 16s ease-in-out infinite;
+  animation-delay: -5s;
 }
 
 .blob-5 {
-  width: 220px;
-  height: 220px;
-  background: radial-gradient(circle at 50% 50%, #f0abfc, #c4b5fd);
-  top: 45%;
-  left: 35%;
-  animation: blobFloat2 28s ease-in-out infinite;
-  animation-delay: -15s;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle at 50% 50%, #e879f9, #c026d3);
+  top: 42%;
+  left: 30%;
+  animation: blobFloat2 26s ease-in-out infinite;
+  animation-delay: -14s;
 }
 
 @keyframes blobFloat1 {
-  0%,  100% { transform: translate(0px,   0px)  scale(1);    }
-  20%        { transform: translate(40px, -50px) scale(1.06); }
-  40%        { transform: translate(-30px, 30px) scale(0.94); }
-  60%        { transform: translate(50px,  40px) scale(1.08); }
-  80%        { transform: translate(-20px,-30px) scale(0.97); }
+  0%,  100% { transform: translate(0px,    0px)  scale(1);    }
+  20%        { transform: translate(50px,  -60px) scale(1.07); }
+  40%        { transform: translate(-40px,  40px) scale(0.93); }
+  60%        { transform: translate(60px,   50px) scale(1.09); }
+  80%        { transform: translate(-25px, -35px) scale(0.96); }
 }
 
 @keyframes blobFloat2 {
-  0%,  100% { transform: translate(0px,   0px)  scale(1);    }
-  25%        { transform: translate(-45px, 35px) scale(1.05); }
-  50%        { transform: translate(30px, -45px) scale(0.93); }
-  75%        { transform: translate(-35px, 20px) scale(1.07); }
+  0%,  100% { transform: translate(0px,    0px)  scale(1);    }
+  25%        { transform: translate(-55px,  45px) scale(1.06); }
+  50%        { transform: translate(40px,  -55px) scale(0.92); }
+  75%        { transform: translate(-40px,  25px) scale(1.08); }
 }
 
 @keyframes blobFloat3 {
-  0%,  100% { transform: translate(0px,  0px)  scale(1);    }
-  30%        { transform: translate(35px, 50px) scale(1.04); }
-  60%        { transform: translate(-40px,-35px)scale(0.96); }
-  80%        { transform: translate(20px, -20px)scale(1.06); }
+  0%,  100% { transform: translate(0px,   0px)  scale(1);    }
+  30%        { transform: translate(45px,  60px) scale(1.05); }
+  60%        { transform: translate(-50px,-45px) scale(0.95); }
+  80%        { transform: translate(25px, -25px) scale(1.07); }
 }
 
 /* Scrollbar styling */
