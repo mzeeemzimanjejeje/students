@@ -443,41 +443,84 @@ function HubSection() {
 
 function DeploySection() {
   const platforms = [
-    { name: "Heroku", desc: "Cloud platform deployment", logo: "https://avatars.githubusercontent.com/u/23211?s=64&v=4", isLink: false },
-    { name: "Replit", desc: "Online IDE deployment", logo: "https://avatars.githubusercontent.com/u/983194?s=64&v=4", url: "https://repl.it/github/Courtney250/TRUTH-MD" },
-    { name: "Render", desc: "Cloud hosting platform", logo: "https://avatars.githubusercontent.com/u/36424661?s=64&v=4", url: "https://render.com/deploy?repo=https://github.com/Courtney250/TRUTH-MD" },
-    { name: "Railway", desc: "Modern deployment platform", logo: "https://avatars.githubusercontent.com/u/66716858?s=64&v=4", url: "https://railway.app/new/template?template=https://github.com/Courtney250/TRUTH-MD" },
+    {
+      name: "Heroku",
+      desc: "Cloud platform",
+      logo: "https://avatars.githubusercontent.com/u/23211?s=64&v=4",
+      color: "#430098",
+      isInternal: true,
+    },
+    {
+      name: "Replit",
+      desc: "Online IDE",
+      logo: "https://avatars.githubusercontent.com/u/983194?s=64&v=4",
+      color: "#F26207",
+      url: "https://repl.it/github/Courtney250/TRUTH-MD",
+    },
+    {
+      name: "Render",
+      desc: "Cloud hosting",
+      logo: "https://avatars.githubusercontent.com/u/36424661?s=64&v=4",
+      color: "#46E3B7",
+      url: "https://render.com/deploy?repo=https://github.com/Courtney250/TRUTH-MD",
+    },
+    {
+      name: "Railway",
+      desc: "Modern platform",
+      logo: "https://avatars.githubusercontent.com/u/66716858?s=64&v=4",
+      color: "#0B0D0E",
+      url: "https://railway.app/new/template?template=https://github.com/Courtney250/TRUTH-MD",
+    },
   ];
 
   return (
     <section id="deploy" className="py-16 px-6">
-      <div className="max-w-2xl mx-auto space-y-4">
+      <div className="max-w-2xl mx-auto">
         <h2 className="text-2xl font-bold text-slate-800 mb-6 text-center" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
           One-Click Deployment
         </h2>
-        <div className="bg-white rounded-3xl p-6 shadow-sm space-y-3">
+        <div className="grid grid-cols-2 gap-4">
           {platforms.map((p) => (
-            <div key={p.name} className="flex items-center justify-between py-3 border-b border-slate-100 last:border-0">
-              <div className="flex items-center gap-3">
-                <img src={p.logo} alt={p.name} className="w-9 h-9 rounded-xl object-contain bg-white border border-slate-100 p-0.5" />
-                <div>
-                  <p className="font-semibold text-slate-800 text-sm">{p.name}</p>
-                  <p className="text-xs text-slate-400">{p.desc}</p>
-                </div>
+            <div
+              key={p.name}
+              className="bg-white rounded-3xl p-5 shadow-sm flex flex-col items-center text-center gap-3"
+            >
+              {/* Logo circle */}
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-md overflow-hidden"
+                style={{ background: p.color + "18", border: "1.5px solid " + p.color + "30" }}
+              >
+                <img
+                  src={p.logo}
+                  alt={p.name}
+                  className="w-10 h-10 object-contain rounded-xl"
+                />
               </div>
-              {p.isLink === false ? (
-                <Link href="/deploy"
-                  className="px-4 py-1.5 text-white text-xs font-semibold rounded-xl transition-all hover:-translate-y-0.5 shadow-sm shadow-indigo-200"
-                  style={{ background: "linear-gradient(135deg, #6366f1, #818cf8)" }}
+
+              {/* Info */}
+              <div>
+                <p className="font-bold text-slate-800 text-sm">{p.name}</p>
+                <p className="text-xs text-slate-400 mt-0.5">{p.desc}</p>
+              </div>
+
+              {/* Button */}
+              {p.isInternal ? (
+                <Link
+                  href="/deploy"
+                  className="w-full flex items-center justify-center py-2.5 rounded-2xl text-white text-xs font-bold transition-all hover:opacity-90 active:scale-95 shadow-sm"
+                  style={{ background: "linear-gradient(135deg, #7c3aed, #6366f1)" }}
                 >
-                  Deploy Now
+                  Deploy
                 </Link>
               ) : (
-                <a href={(p as any).url} target="_blank" rel="noopener noreferrer"
-                  className="px-4 py-1.5 text-white text-xs font-semibold rounded-xl transition-all hover:-translate-y-0.5 shadow-sm shadow-indigo-200"
-                  style={{ background: "linear-gradient(135deg, #6366f1, #818cf8)" }}
+                <a
+                  href={(p as any).url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center py-2.5 rounded-2xl text-white text-xs font-bold transition-all hover:opacity-90 active:scale-95 shadow-sm"
+                  style={{ background: "linear-gradient(135deg, #7c3aed, #6366f1)" }}
                 >
-                  Deploy Now
+                  Deploy
                 </a>
               )}
             </div>
