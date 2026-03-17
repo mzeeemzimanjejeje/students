@@ -274,7 +274,7 @@ function HeroSection() {
 
         {/* Stats */}
         <div className="flex items-center justify-center gap-8 pt-2">
-          {[["50K+", "Active Users"], ["300+", "Features"], ["99.9%", "Uptime"]].map(([val, label]) => (
+          {[["30K+", "Active Users"], ["340K+", "Features"], ["99.9%", "Uptime"]].map(([val, label]) => (
             <div key={label} className="text-center">
               <p
                 className="text-3xl font-black"
