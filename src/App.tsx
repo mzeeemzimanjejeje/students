@@ -176,16 +176,28 @@ function BottomNav() {
   if (location !== "/") return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-4 px-6">
-      <div className="bg-white rounded-3xl shadow-2xl px-6 py-3 flex items-center gap-6" style={{ boxShadow: "0 8px 32px rgba(99,102,241,0.18)" }}>
+    <div className="fixed bottom-5 left-0 right-0 z-50 flex justify-center px-8">
+      <div
+        className="flex items-center gap-2 px-4 py-2 rounded-full"
+        style={{
+          background: "rgba(22, 18, 38, 0.92)",
+          backdropFilter: "blur(16px)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+        }}
+      >
         {items.map((item) => (
           <button
             key={item.id}
             onClick={() => scrollTo(item.id)}
-            className={`flex flex-col items-center gap-1 transition-all ${active === item.id ? "text-white" : "text-slate-400 hover:text-indigo-500"}`}
+            className="flex items-center justify-center transition-all"
           >
             <span
-              className={`p-2.5 rounded-full transition-all ${active === item.id ? "bg-indigo-600 shadow-lg shadow-indigo-200" : ""}`}
+              className={`p-3 rounded-full transition-all ${
+                active === item.id
+                  ? "text-white shadow-lg"
+                  : "text-slate-400 hover:text-slate-200"
+              }`}
+              style={active === item.id ? { background: "linear-gradient(135deg, #7c3aed, #6366f1)" } : {}}
             >
               {item.icon}
             </span>
@@ -214,55 +226,81 @@ function trackPairClick(refresh: () => void) {
 
 function HeroSection() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
-      <div className="relative max-w-2xl mx-auto px-6 w-full text-center space-y-6">
-        <div className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-full text-indigo-700 text-sm font-semibold"
-          style={{ background: "rgba(99,102,241,0.12)" }}>
-          <span>🤖</span> Next-Gen Bot Platform
-        </div>
+    <section id="home" className="relative min-h-screen flex flex-col overflow-hidden">
+      {/* Content area */}
+      <div className="flex-1 flex flex-col items-center justify-center px-6 pt-16 pb-6 text-center space-y-6">
 
-        <div className="flex justify-center">
-          <div className="w-28 h-28 rounded-3xl overflow-hidden shadow-2xl shadow-indigo-200">
-            <img src="https://files.catbox.moe/evpvot.jpg" alt="TRUTH MD" className="w-full h-full object-cover" />
-          </div>
-        </div>
-
-        <h1 className="text-6xl font-black text-indigo-700" style={{ fontFamily: "'Space Grotesk', sans-serif", letterSpacing: "-0.03em" }}>
+        <h1
+          className="text-5xl font-black tracking-tight"
+          style={{
+            fontFamily: "'Space Grotesk', sans-serif",
+            letterSpacing: "-0.03em",
+            background: "linear-gradient(135deg, #7c3aed 0%, #6366f1 50%, #22d3ee 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
+        >
           TRUTH MD
         </h1>
 
-        <p className="text-xl font-semibold text-slate-700">The Ultimate WhatsApp Bot Experience</p>
+        <p className="text-2xl font-bold text-slate-800 leading-snug max-w-xs mx-auto">
+          The Ultimate WhatsApp Bot Experience
+        </p>
 
-        <p className="text-slate-500 text-sm leading-relaxed max-w-sm mx-auto">
+        <p className="text-slate-500 text-base leading-relaxed max-w-sm mx-auto">
           Deploy powerful TRUTH MD bots with advanced features, multi-session support, and high reliability.
         </p>
 
-        <div className="flex items-center justify-center gap-4 flex-wrap">
+        {/* Stacked full-width pill buttons */}
+        <div className="w-full max-w-xs space-y-3 pt-2">
           <button
             onClick={() => document.getElementById("deploy")?.scrollIntoView({ behavior: "smooth" })}
-            className="inline-flex items-center gap-2 px-7 py-3.5 text-white font-semibold rounded-2xl transition-all shadow-lg shadow-indigo-200 hover:shadow-xl hover:-translate-y-0.5"
-            style={{ background: "linear-gradient(135deg, #6366f1, #818cf8)" }}
+            className="w-full flex items-center justify-center gap-3 py-4 rounded-full text-white font-bold text-lg transition-all hover:opacity-90 active:scale-95 shadow-lg shadow-indigo-300"
+            style={{ background: "linear-gradient(135deg, #7c3aed, #6366f1)" }}
           >
-            🚀 Quick Deploy
+            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Quick Deploy
           </button>
-          <a
-            href="https://github.com/Courtney250/TRUTH-MD/archive/refs/heads/main.zip"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-7 py-3.5 font-semibold rounded-2xl transition-all hover:-translate-y-0.5 border-2"
-            style={{ background: "rgba(255,255,255,0.7)", borderColor: "rgba(99,102,241,0.3)", color: "#6366f1" }}
+          <button
+            onClick={() => document.getElementById("install")?.scrollIntoView({ behavior: "smooth" })}
+            className="w-full flex items-center justify-center gap-3 py-4 rounded-full text-white font-bold text-lg transition-all hover:opacity-90 active:scale-95"
+            style={{ background: "linear-gradient(135deg, #5b21b6, #4f46e5)" }}
           >
-            👑 Download Latest ZIP
-          </a>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Manual Install
+          </button>
         </div>
 
-        <div className="flex items-center justify-center gap-10 pt-2">
-          {[["20K+", "Active Users"], ["300+", "Features"], ["99.9%", "Uptime"]].map(([val, label]) => (
+        {/* Stats */}
+        <div className="flex items-center justify-center gap-8 pt-2">
+          {[["50K+", "Active Users"], ["300+", "Features"], ["99.9%", "Uptime"]].map(([val, label]) => (
             <div key={label} className="text-center">
-              <p className="text-3xl font-black text-indigo-600" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{val}</p>
-              <p className="text-xs text-slate-500 mt-0.5">{label}</p>
+              <p
+                className="text-3xl font-black"
+                style={{
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  background: "linear-gradient(135deg, #7c3aed, #6366f1)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >{val}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{label}</p>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* Large logo image pinned at the bottom, partially behind bottom nav */}
+      <div className="w-full px-4 pb-0">
+        <div className="rounded-3xl overflow-hidden w-full" style={{ maxHeight: "260px", background: "#0f0f1a" }}>
+          <img
+            src="https://files.catbox.moe/evpvot.jpg"
+            alt="TRUTH MD"
+            className="w-full object-cover object-center"
+            style={{ height: "260px" }}
+          />
         </div>
       </div>
     </section>
