@@ -185,7 +185,7 @@ function SideNav({ active, setActive }: { active: string; setActive: (s: string)
     { id: "hero", icon: "⌂" },
     { id: "hub", icon: "★" },
     { id: "deploy", icon: "🚀" },
-    { id: "install", icon: "⬇" },
+    { id: "install", icon: "👑" },
   ];
   return (
     <div className="fixed right-5 top-1/2 -translate-y-1/2 bg-white rounded-3xl py-3 px-2 shadow-xl flex flex-col gap-2 z-50 hidden lg:flex">
@@ -262,7 +262,7 @@ function HeroSection() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-xl transition-colors shadow-md shadow-blue-200"
               >
-                ⬇ Download Latest ZIP
+                👑 Download Latest ZIP
               </a>
             </div>
 
