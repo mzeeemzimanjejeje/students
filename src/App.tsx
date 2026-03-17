@@ -80,7 +80,6 @@ const INSTALL_CONTENT: Record<string, { prereqs: string[]; title: string; code: 
   },
 };
 
-const PAGE_BG = "linear-gradient(160deg, #ece9f8 0%, #e0dff5 40%, #dde4f8 100%)";
 
 function LiveBadge() {
   return (
@@ -687,7 +686,7 @@ function DeployPage() {
 
 function HomePage() {
   return (
-    <div className="min-h-screen" style={{ background: PAGE_BG }}>
+    <div className="min-h-screen">
       <HeroSection />
       <HubSection />
       <DeploySection />
