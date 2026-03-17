@@ -1,0 +1,9 @@
+{
+  "installCommand": "pnpm install",
+  "buildCommand": "pnpm --filter @workspace/cypherx-site build",
+  "outputDirectory": "artifacts/cypherx-site/dist/public",
+  "framework": null,
+  "env": {
+    "BASE_PATH": "/"
+  }
+}
