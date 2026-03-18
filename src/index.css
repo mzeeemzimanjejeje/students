@@ -98,47 +98,29 @@
     background-color: #eef2ff;
     position: relative;
   }
-  /* Full-screen rotating aurora — centred, oversized so no corner is ever
-     bare, even mid-rotation. Two layers spin opposite ways for depth. */
+  /* Exact cypherx.space aurora — three 200vw×200vh layers floating and
+     rotating from a centred anchor, staggered 7s apart. */
   html::before,
   html::after {
     content: '';
     position: fixed;
-    top: 50%;
-    left: 50%;
-    /* 300vmax guarantees full coverage at any rotation angle */
-    width: 300vmax;
-    height: 300vmax;
-    margin-top: -150vmax;
-    margin-left: -150vmax;
+    top: calc(0px - env(safe-area-inset-top, 0px));
+    left: 0;
+    width: 200vw;
+    height: calc(200vh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px));
     pointer-events: none;
     z-index: 0;
-    transform-origin: center center;
+    opacity: 0.1;
   }
   html::before {
-    background: conic-gradient(
-      from 0deg,
-      #6366f1 0%,
-      #8b5cf6 20%,
-      #eef2ff 40%,
-      #06b6d4 60%,
-      #eef2ff 80%,
-      #6366f1 100%
-    );
-    animation: spinCW 18s linear infinite;
-    opacity: 0.18;
+    background: linear-gradient(45deg, transparent, #6366f1, transparent);
+    animation: auroraFloat 20s ease-in-out infinite;
+    animation-delay: 0s;
   }
   html::after {
-    background: conic-gradient(
-      from 180deg,
-      #8b5cf6 0%,
-      #eef2ff 25%,
-      #6366f1 50%,
-      #eef2ff 75%,
-      #8b5cf6 100%
-    );
-    animation: spinCCW 24s linear infinite;
-    opacity: 0.12;
+    background: linear-gradient(135deg, transparent, #8b5cf6, transparent);
+    animation: auroraFloat 20s ease-in-out infinite;
+    animation-delay: -7s;
   }
   body {
     @apply font-sans antialiased text-foreground;
@@ -153,25 +135,16 @@
   body::before {
     content: '';
     position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 300vmax;
-    height: 300vmax;
-    margin-top: -150vmax;
-    margin-left: -150vmax;
-    background: conic-gradient(
-      from 90deg,
-      #06b6d4 0%,
-      #eef2ff 30%,
-      #6366f1 60%,
-      #eef2ff 85%,
-      #06b6d4 100%
-    );
-    animation: spinCW 30s linear infinite;
-    opacity: 0.10;
+    top: calc(0px - env(safe-area-inset-top, 0px));
+    left: 0;
+    width: 200vw;
+    height: calc(200vh + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(225deg, transparent, #06b6d4, transparent);
+    animation: auroraFloat 20s ease-in-out infinite;
+    animation-delay: -14s;
+    opacity: 0.1;
     pointer-events: none;
     z-index: 0;
-    transform-origin: center center;
   }
   #root {
     min-height: 100vh;
@@ -181,13 +154,11 @@
     z-index: 1;
   }
 
-  @keyframes spinCW {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-  @keyframes spinCCW {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(-360deg); }
+  /* Exact keyframes from cypherx.space */
+  @keyframes auroraFloat {
+    0%,  100% { transform: translateX(-50%) translateY(-50%) rotate(0deg)   scale(1);   }
+    33%        { transform: translateX(-40%) translateY(-60%) rotate(120deg) scale(1.1); }
+    66%        { transform: translateX(-60%) translateY(-40%) rotate(240deg) scale(0.9); }
   }
 }
 
