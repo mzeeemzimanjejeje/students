@@ -91,6 +91,10 @@
     min-height: 100dvh;
     overflow-x: hidden;
   }
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-top: max(env(safe-area-inset-top), 0px);
+  }
   html {
     min-height: 100vh;
     min-height: 100dvh;
