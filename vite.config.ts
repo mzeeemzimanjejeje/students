@@ -5,11 +5,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const port = Number(process.env.PORT ?? "3000");
-const basePath = process.env.BASE_PATH ?? "/";
 
 export default defineConfig({
-  base: basePath,
   plugins: [
     react(),
     tailwindcss(),
@@ -21,13 +18,12 @@ export default defineConfig({
     },
     dedupe: ["react", "react-dom"],
   },
-  root: path.resolve(__dirname),
   build: {
-    outDir: path.resolve(__dirname, "dist/public"),
+    outDir: "dist/public",
     emptyOutDir: true,
   },
   server: {
-    port,
+    port: Number(process.env.PORT ?? "22488"),
     host: "0.0.0.0",
     allowedHosts: true,
     proxy: {
@@ -42,7 +38,7 @@ export default defineConfig({
     },
   },
   preview: {
-    port,
+    port: Number(process.env.PORT ?? "22488"),
     host: "0.0.0.0",
     allowedHosts: true,
   },
