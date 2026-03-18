@@ -8,12 +8,10 @@ const GITHUB_REPO = "Courtney250/TRUTH-MD";
 
 function AnimatedBackground() {
   return (
-    <div className="blob-wrap">
-      <div className="blob blob-1" />
-      <div className="blob blob-2" />
-      <div className="blob blob-3" />
-      <div className="blob blob-4" />
-      <div className="blob blob-5" />
+    <div className="bg-panels">
+      <div className="panel panel-1" />
+      <div className="panel panel-2" />
+      <div className="panel panel-3" />
     </div>
   );
 }
