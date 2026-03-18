@@ -91,11 +91,7 @@
     min-height: 100dvh;
     overflow-x: hidden;
   }
-  body {
-    padding-top: env(safe-area-inset-top);
-    padding-top: max(env(safe-area-inset-top), 0px);
-  }
-  html {
+  html, body, #root {
     min-height: 100vh;
     min-height: 100dvh;
     background: linear-gradient(
@@ -121,14 +117,12 @@
   }
   body {
     @apply font-sans antialiased text-foreground;
-    background: transparent;
     min-height: 100vh;
     min-height: 100dvh;
   }
   #root {
     min-height: 100vh;
     min-height: 100dvh;
-    background: transparent;
   }
 }
 
