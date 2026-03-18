@@ -87,10 +87,13 @@
   html, body {
     margin: 0;
     padding: 0;
-    min-height: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
   }
   html {
+    min-height: 100vh;
+    min-height: 100dvh;
     background: linear-gradient(
       -45deg,
       #c7d2fe,
@@ -102,7 +105,6 @@
       #c7d2fe
     );
     background-size: 400% 400%;
-    background-attachment: fixed;
     animation: meshFlow 12s ease infinite;
   }
 
