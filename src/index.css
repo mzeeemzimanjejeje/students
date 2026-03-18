@@ -94,8 +94,8 @@
   html {
     min-height: 100vh;
     min-height: 100dvh;
-    /* Indigo fill behind the aurora so the status bar gap is never white */
-    background-color: #6366f1;
+    /* Light indigo tint — visible as colour but never dark */
+    background-color: #eef2ff;
     position: relative;
   }
   /* Aurora layers — fixed so they extend behind the status bar in
@@ -104,27 +104,23 @@
   html::after {
     content: '';
     position: fixed;
-    /* push above the safe-area-inset-top so there is no gap */
     top: calc(-50% - env(safe-area-inset-top, 20px));
     left: -50%;
     width: 200%;
-    /* add the safe-area height to the 200% so the bottom isn't clipped */
     height: calc(200% + env(safe-area-inset-top, 20px) + env(safe-area-inset-bottom, 20px));
     pointer-events: none;
     z-index: 0;
   }
   html::before {
-    background: radial-gradient(ellipse at 30% 30%, #6366f1 0%, transparent 70%),
-                radial-gradient(ellipse at 70% 60%, #f8fafc 0%, transparent 60%);
+    background: linear-gradient(45deg, transparent, #6366f1, transparent);
     animation: auroraFloat 20s ease-in-out infinite;
-    opacity: 0.95;
+    opacity: 0.12;
   }
   html::after {
-    background: radial-gradient(ellipse at 70% 20%, #8b5cf6 0%, transparent 60%),
-                radial-gradient(ellipse at 20% 80%, #6366f1 0%, transparent 60%);
+    background: linear-gradient(135deg, transparent, #8b5cf6, transparent);
     animation: auroraFloat 20s ease-in-out infinite;
     animation-delay: -7s;
-    opacity: 0.80;
+    opacity: 0.10;
   }
   body {
     @apply font-sans antialiased text-foreground;
@@ -144,10 +140,10 @@
     left: -50%;
     width: 200%;
     height: calc(200% + env(safe-area-inset-top, 20px) + env(safe-area-inset-bottom, 20px));
-    background: radial-gradient(ellipse at 50% 80%, #06b6d4 0%, transparent 60%);
+    background: linear-gradient(225deg, transparent, #06b6d4, transparent);
     animation: auroraFloat 20s ease-in-out infinite;
     animation-delay: -14s;
-    opacity: 0.35;
+    opacity: 0.08;
     pointer-events: none;
     z-index: 0;
   }
