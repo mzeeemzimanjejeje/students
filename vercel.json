@@ -1,6 +1,6 @@
 {
   "framework": null,
-  "installCommand": "npm install --legacy-peer-deps",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist/public"
+  "installCommand": "echo skip",
+  "buildCommand": "echo skip",
+  "outputDirectory": "public_build"
 }
