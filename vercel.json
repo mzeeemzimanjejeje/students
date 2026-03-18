@@ -1,6 +1,9 @@
 {
-  "installCommand": "npm ci",
+  "installCommand": "npm install",
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
-  "framework": "vite"
+  "framework": "vite",
+  "engines": {
+    "node": "18.x"
+  }
 }
