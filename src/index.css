@@ -91,7 +91,8 @@
     overflow-x: hidden;
   }
   html {
-    background: #ede9fe;
+    background: linear-gradient(160deg, #c7d2fe 0%, #bfdbfe 45%, #ddd6fe 100%);
+    background-attachment: fixed;
   }
   body {
     @apply font-sans antialiased text-foreground;
@@ -107,8 +108,8 @@
 }
 
 
-/* ── Animated blobs ── */
-.blob-wrap {
+/* ── Diagonal panels (matches screenshot design) ── */
+.bg-panels {
   position: fixed;
   inset: 0;
   overflow: hidden;
@@ -116,88 +117,53 @@
   z-index: 0;
 }
 
-.blob {
+.panel {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(15px);
-  opacity: 0.68;
+  background: rgba(255, 255, 255, 0.28);
   will-change: transform;
 }
 
-/* soft pink */
-.blob-1 {
-  width: 500px;
-  height: 500px;
-  background: #f9a8d4;
-  top: -120px;
-  left: -80px;
-  animation: blobMove1 16s ease-in-out infinite;
+/* large top-left diagonal slab */
+.panel-1 {
+  width: 160%;
+  height: 55%;
+  top: -18%;
+  left: -35%;
+  transform: rotate(-22deg);
+  animation: panelDrift1 18s ease-in-out infinite;
 }
 
-/* periwinkle blue */
-.blob-2 {
-  width: 440px;
-  height: 440px;
-  background: #bfdbfe;
-  top: 5%;
-  right: -100px;
-  animation: blobMove2 20s ease-in-out infinite;
-  animation-delay: -7s;
+/* bottom-right diagonal slab */
+.panel-2 {
+  width: 150%;
+  height: 50%;
+  bottom: -20%;
+  right: -30%;
+  transform: rotate(-22deg);
+  animation: panelDrift1 22s ease-in-out infinite;
+  animation-delay: -10s;
 }
 
-/* violet */
-.blob-3 {
-  width: 480px;
-  height: 480px;
-  background: #c4b5fd;
-  bottom: -80px;
-  left: -60px;
-  animation: blobMove3 18s ease-in-out infinite;
-  animation-delay: -11s;
+/* narrow mid accent strip */
+.panel-3 {
+  width: 120%;
+  height: 25%;
+  top: 38%;
+  left: -15%;
+  transform: rotate(-22deg);
+  background: rgba(255, 255, 255, 0.16);
+  animation: panelDrift2 26s ease-in-out infinite;
+  animation-delay: -6s;
 }
 
-/* fuchsia */
-.blob-4 {
-  width: 360px;
-  height: 360px;
-  background: #f0abfc;
-  bottom: 18%;
-  right: -60px;
-  animation: blobMove1 22s ease-in-out infinite;
-  animation-delay: -5s;
+@keyframes panelDrift1 {
+  0%,  100% { transform: rotate(-22deg) translateY(0px);   }
+  50%        { transform: rotate(-22deg) translateY(30px);  }
 }
 
-/* soft indigo */
-.blob-5 {
-  width: 320px;
-  height: 320px;
-  background: #a5b4fc;
-  top: 40%;
-  left: 25%;
-  animation: blobMove2 24s ease-in-out infinite;
-  animation-delay: -14s;
-}
-
-@keyframes blobMove1 {
-  0%,  100% { transform: translate(0px,    0px)  scale(1);    }
-  20%        { transform: translate(55px,  -65px) scale(1.07); }
-  40%        { transform: translate(-45px,  45px) scale(0.93); }
-  60%        { transform: translate(65px,   50px) scale(1.09); }
-  80%        { transform: translate(-25px, -35px) scale(0.96); }
-}
-
-@keyframes blobMove2 {
-  0%,  100% { transform: translate(0px,   0px)  scale(1);    }
-  25%        { transform: translate(-55px, 45px) scale(1.06); }
-  50%        { transform: translate(45px, -55px) scale(0.92); }
-  75%        { transform: translate(-40px, 28px) scale(1.08); }
-}
-
-@keyframes blobMove3 {
-  0%,  100% { transform: translate(0px,  0px)  scale(1);    }
-  30%        { transform: translate(48px, 65px) scale(1.05); }
-  60%        { transform: translate(-50px,-48px) scale(0.94); }
-  80%        { transform: translate(28px, -28px) scale(1.07); }
+@keyframes panelDrift2 {
+  0%,  100% { transform: rotate(-22deg) translateY(0px);   }
+  50%        { transform: rotate(-22deg) translateY(-25px); }
 }
 
 /* Scrollbar styling */
