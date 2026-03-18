@@ -98,29 +98,47 @@
     background-color: #eef2ff;
     position: relative;
   }
-  /* Aurora layers — fixed so they extend behind the status bar in
-     viewport-fit:cover mode; oversized so they fill every corner */
+  /* Full-screen rotating aurora — centred, oversized so no corner is ever
+     bare, even mid-rotation. Two layers spin opposite ways for depth. */
   html::before,
   html::after {
     content: '';
     position: fixed;
-    top: calc(-50% - env(safe-area-inset-top, 20px));
-    left: -50%;
-    width: 200%;
-    height: calc(200% + env(safe-area-inset-top, 20px) + env(safe-area-inset-bottom, 20px));
+    top: 50%;
+    left: 50%;
+    /* 300vmax guarantees full coverage at any rotation angle */
+    width: 300vmax;
+    height: 300vmax;
+    margin-top: -150vmax;
+    margin-left: -150vmax;
     pointer-events: none;
     z-index: 0;
+    transform-origin: center center;
   }
   html::before {
-    background: linear-gradient(45deg, transparent, #6366f1, transparent);
-    animation: auroraFloat 20s ease-in-out infinite;
-    opacity: 0.12;
+    background: conic-gradient(
+      from 0deg,
+      #6366f1 0%,
+      #8b5cf6 20%,
+      #eef2ff 40%,
+      #06b6d4 60%,
+      #eef2ff 80%,
+      #6366f1 100%
+    );
+    animation: spinCW 18s linear infinite;
+    opacity: 0.18;
   }
   html::after {
-    background: linear-gradient(135deg, transparent, #8b5cf6, transparent);
-    animation: auroraFloat 20s ease-in-out infinite;
-    animation-delay: -7s;
-    opacity: 0.10;
+    background: conic-gradient(
+      from 180deg,
+      #8b5cf6 0%,
+      #eef2ff 25%,
+      #6366f1 50%,
+      #eef2ff 75%,
+      #8b5cf6 100%
+    );
+    animation: spinCCW 24s linear infinite;
+    opacity: 0.12;
   }
   body {
     @apply font-sans antialiased text-foreground;
@@ -129,23 +147,31 @@
     background: transparent;
     position: relative;
     z-index: 1;
-    /* push content below the status bar so text is never hidden */
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   body::before {
     content: '';
     position: fixed;
-    top: calc(-50% - env(safe-area-inset-top, 20px));
-    left: -50%;
-    width: 200%;
-    height: calc(200% + env(safe-area-inset-top, 20px) + env(safe-area-inset-bottom, 20px));
-    background: linear-gradient(225deg, transparent, #06b6d4, transparent);
-    animation: auroraFloat 20s ease-in-out infinite;
-    animation-delay: -14s;
-    opacity: 0.08;
+    top: 50%;
+    left: 50%;
+    width: 300vmax;
+    height: 300vmax;
+    margin-top: -150vmax;
+    margin-left: -150vmax;
+    background: conic-gradient(
+      from 90deg,
+      #06b6d4 0%,
+      #eef2ff 30%,
+      #6366f1 60%,
+      #eef2ff 85%,
+      #06b6d4 100%
+    );
+    animation: spinCW 30s linear infinite;
+    opacity: 0.10;
     pointer-events: none;
     z-index: 0;
+    transform-origin: center center;
   }
   #root {
     min-height: 100vh;
@@ -155,10 +181,13 @@
     z-index: 1;
   }
 
-  @keyframes auroraFloat {
-    0%,  100% { transform: translateX(0%)   translateY(0%)   rotate(0deg)   scale(1);   }
-    33%        { transform: translateX(10%)  translateY(-10%) rotate(120deg) scale(1.1); }
-    66%        { transform: translateX(-10%) translateY(10%)  rotate(240deg) scale(0.9); }
+  @keyframes spinCW {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes spinCCW {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
   }
 }
 
