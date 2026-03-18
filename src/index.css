@@ -91,8 +91,28 @@
     overflow-x: hidden;
   }
   html {
-    background: linear-gradient(160deg, #c7d2fe 0%, #bfdbfe 45%, #ddd6fe 100%);
+    background: linear-gradient(
+      -45deg,
+      #c7d2fe,
+      #a5b4fc,
+      #bfdbfe,
+      #ddd6fe,
+      #f0abfc,
+      #c4b5fd,
+      #bfdbfe,
+      #c7d2fe
+    );
+    background-size: 400% 400%;
     background-attachment: fixed;
+    animation: meshFlow 12s ease infinite;
+  }
+
+  @keyframes meshFlow {
+    0%   { background-position: 0%   50%; }
+    25%  { background-position: 100% 50%; }
+    50%  { background-position: 100%  0%; }
+    75%  { background-position: 0%  100%; }
+    100% { background-position: 0%   50%; }
   }
   body {
     @apply font-sans antialiased text-foreground;
@@ -108,63 +128,6 @@
 }
 
 
-/* ── Diagonal panels (matches screenshot design) ── */
-.bg-panels {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.panel {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.28);
-  will-change: transform;
-}
-
-/* large top-left diagonal slab */
-.panel-1 {
-  width: 160%;
-  height: 55%;
-  top: -18%;
-  left: -35%;
-  transform: rotate(-22deg);
-  animation: panelDrift1 18s ease-in-out infinite;
-}
-
-/* bottom-right diagonal slab */
-.panel-2 {
-  width: 150%;
-  height: 50%;
-  bottom: -20%;
-  right: -30%;
-  transform: rotate(-22deg);
-  animation: panelDrift1 22s ease-in-out infinite;
-  animation-delay: -10s;
-}
-
-/* narrow mid accent strip */
-.panel-3 {
-  width: 120%;
-  height: 25%;
-  top: 38%;
-  left: -15%;
-  transform: rotate(-22deg);
-  background: rgba(255, 255, 255, 0.16);
-  animation: panelDrift2 26s ease-in-out infinite;
-  animation-delay: -6s;
-}
-
-@keyframes panelDrift1 {
-  0%,  100% { transform: rotate(-22deg) translateY(0px);   }
-  50%        { transform: rotate(-22deg) translateY(30px);  }
-}
-
-@keyframes panelDrift2 {
-  0%,  100% { transform: rotate(-22deg) translateY(0px);   }
-  50%        { transform: rotate(-22deg) translateY(-25px); }
-}
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
