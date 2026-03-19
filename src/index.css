@@ -94,8 +94,8 @@
   html {
     min-height: 100vh;
     min-height: 100dvh;
-    /* Light indigo tint — visible as colour but never dark */
-    background-color: #eef2ff;
+    /* Exact cypherx.space base background */
+    background-color: #f8fafc;
     position: relative;
   }
   /* Exact cypherx.space aurora — three 200vw×200vh layers floating and
