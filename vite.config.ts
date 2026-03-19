@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/students/' : '/',
+  base: '/',
   plugins: [
     react(),
     tailwindcss(),
@@ -24,22 +24,16 @@ export default defineConfig(({ command }) => ({
     emptyOutDir: true,
   },
   server: {
-    port: Number(process.env.PORT ?? "22488"),
+    port: 5000,
     host: "0.0.0.0",
     allowedHosts: true,
-    proxy: {
-      "/api": {
-        target: "http://localhost:8080",
-        changeOrigin: true,
-      },
-    },
     fs: {
       strict: true,
       deny: ["**/.*"],
     },
   },
   preview: {
-    port: Number(process.env.PORT ?? "22488"),
+    port: 5000,
     host: "0.0.0.0",
     allowedHosts: true,
   },
