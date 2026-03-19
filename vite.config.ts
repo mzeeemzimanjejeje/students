@@ -20,7 +20,7 @@ export default defineConfig(({ command }) => ({
     dedupe: ["react", "react-dom"],
   },
   build: {
-    outDir: "dist/public",
+    outDir: "public_build",
     emptyOutDir: true,
   },
   server: {
