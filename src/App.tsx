@@ -617,35 +617,46 @@ function Footer() {
   );
 }
 
-type ForkStatus = "idle" | "checking" | "found" | "notfound" | "outofdate" | "error";
+type ForkStatus = "idle" | "checking" | "opening" | "notfound" | "outofdate" | "error";
 
 function DeployPage() {
   const [username, setUsername] = useState("");
   const [status, setStatus] = useState<ForkStatus>("idle");
+
+  const herokuUrl = `https://heroku.com/deploy?template=https://github.com/${GITHUB_REPO}`;
+
+  useEffect(() => {
+    if (status === "opening") {
+      const timer = setTimeout(() => {
+        window.open(herokuUrl, "_blank");
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [status, herokuUrl]);
 
   const checkFork = async () => {
     if (!username.trim()) return;
     setStatus("checking");
     try {
       const user = username.trim();
-      const forkRes = await fetch(`https://api.github.com/repos/${user}/TRUTH-MD`);
+      const forkRes = await fetch(`https://api.github.com/repos/${user}/TRUTH-MD`, {
+        headers: { Accept: "application/vnd.github+json" },
+      });
       if (forkRes.status === 404) { setStatus("notfound"); return; }
       if (!forkRes.ok) { setStatus("error"); return; }
       const [upstreamRes, forkCommitRes] = await Promise.all([
-        fetch(`https://api.github.com/repos/${GITHUB_REPO}/commits?per_page=1`),
-        fetch(`https://api.github.com/repos/${user}/TRUTH-MD/commits?per_page=1`),
+        fetch(`https://api.github.com/repos/${GITHUB_REPO}/commits?per_page=1`, { headers: { Accept: "application/vnd.github+json" } }),
+        fetch(`https://api.github.com/repos/${user}/TRUTH-MD/commits?per_page=1`, { headers: { Accept: "application/vnd.github+json" } }),
       ]);
-      if (!upstreamRes.ok || !forkCommitRes.ok) { setStatus("found"); return; }
+      if (!upstreamRes.ok || !forkCommitRes.ok) { setStatus("opening"); return; }
       const [upstreamCommits, forkCommits] = await Promise.all([upstreamRes.json(), forkCommitRes.json()]);
       const upstreamSha = upstreamCommits[0]?.sha;
       const forkSha = forkCommits[0]?.sha;
-      setStatus(upstreamSha && forkSha && upstreamSha !== forkSha ? "outofdate" : "found");
+      setStatus(upstreamSha && forkSha && upstreamSha !== forkSha ? "outofdate" : "opening");
     } catch {
       setStatus("error");
     }
   };
-
-  const herokuUrl = `https://heroku.com/deploy?template=https://github.com/${GITHUB_REPO}`;
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6"
@@ -683,11 +694,12 @@ function DeployPage() {
               onKeyDown={(e) => e.key === "Enter" && checkFork()}
               placeholder="Enter your GitHub username"
               className="bg-transparent flex-1 text-white placeholder-slate-500 outline-none text-sm"
+              disabled={status === "opening"}
             />
           </div>
         </div>
         {status === "checking" && <p className="text-indigo-400 text-xs mb-4 flex items-center gap-2"><span className="inline-block w-3 h-3 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin" />Checking repository...</p>}
-        {status === "found" && <p className="text-green-400 text-xs mb-4">✓ Fork confirmed — you're good to deploy!</p>}
+        {status === "opening" && <p className="text-green-400 text-xs mb-4 flex items-center gap-2"><span className="inline-block w-3 h-3 border-2 border-green-400 border-t-transparent rounded-full animate-spin" />✓ Fork confirmed — opening Heroku...</p>}
         {status === "notfound" && (
           <div className="mb-4">
             <p className="text-red-400 text-xs mb-2">✗ No fork found for <strong>{username}</strong>. Please fork the repo first.</p>
@@ -707,11 +719,15 @@ function DeployPage() {
             >Sync fork on GitHub →</a>
           </div>
         )}
-        {status === "error" && <p className="text-amber-400 text-xs mb-4">⚠ Could not verify — check your username and try again.</p>}
-        {status === "found" ? (
-          <a href={herokuUrl} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center">
-            <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" className="h-10" />
-          </a>
+        {status === "error" && <p className="text-red-400 text-xs mb-4">✗ Could not find a fork for <strong>{username}</strong> — check your username and try again.</p>}
+        {status === "opening" ? (
+          <button disabled
+            className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-semibold text-white text-sm opacity-70 cursor-not-allowed"
+            style={{ background: "linear-gradient(135deg, #6366f1, #818cf8)" }}
+          >
+            <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+            Loading Heroku...
+          </button>
         ) : (
           <button onClick={checkFork} disabled={!username.trim() || status === "checking"}
             className="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-semibold text-white transition-all text-sm disabled:opacity-40 disabled:cursor-not-allowed"
