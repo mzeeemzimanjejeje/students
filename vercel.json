@@ -1,7 +1,7 @@
 {
   "framework": null,
-  "installCommand": "echo skip",
-  "buildCommand": "echo skip",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
   "outputDirectory": "public_build",
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
